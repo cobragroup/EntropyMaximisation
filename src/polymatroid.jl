@@ -71,7 +71,6 @@ function polymatroid_optim(method::PolymatroidEntropyMethod,
 
 	~(s::Tuple) = (i for i ∈ 1:num_dimensions if i ∉ s)
 
-	ent_con = Array{Any, 1}(undef, marginal_size)
 
 	for i in 1:marginal_size
 		marginals = permutations_of_length(i, num_dimensions)
@@ -80,10 +79,8 @@ function polymatroid_optim(method::PolymatroidEntropyMethod,
 				ent[collect(m)] = entropy(joint_probability, method, ~(m))
 			end
 		end
-		ent_con[i] = Array{Any, 1}(undef, length(marginals))
 		for j in 1:length(marginals)
 			m = marginals[j]
-			#ent_con[i][j] = @constraint(model, h[s_i[collect(m)]] == ent[s_i[collect(m)]])
 			if (method isa GPolymatroid && method.tolerance > 0)
 				@constraint(model, h[s_i[collect(m)]] >= (1 - method.tolerance) * ent[collect(m)])
 				@constraint(model, h[s_i[collect(m)]] <= (1 + method.tolerance) * ent[collect(m)])
