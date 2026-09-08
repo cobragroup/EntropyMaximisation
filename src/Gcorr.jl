@@ -95,7 +95,7 @@ function Gcorr(counts::AbstractVector{<:Integer}; cache::GCache = GCache())::Flo
 			E += c * cache.G[div(c, 2)+1]
 		end
 	end
-	return (log(float(N)) - (E / float(N)))/ln(2)
+	return (log(float(N)) - (E / float(N)))/log(2)
 end
 
 """
