@@ -395,7 +395,7 @@ function _max_entropy_for_set(joint_probability::Array{<:T}, marginal_size::Set{
 	ent = precalculated_entropies
 	si = Dict()
 	result = Dict{Int, EMFMEResult}()
-	for m in marginal_size
+	for m in sort(collect(marginal_size), rev=true)
 		val, h, ent, si = polymatroid_optim(
 			method,
 			joint_probability,
