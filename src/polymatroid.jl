@@ -294,7 +294,7 @@ function precompute_entropies(joint_probability::Array{<:Real}, method::Polymatr
 		# calculate entropy
 		entropies[m] = entropy(store[k])+mle_correction
 	end
-	ent[Int64[]] = 0
+	entropies[Int64[]] = 0
 	return entropies
 
 end

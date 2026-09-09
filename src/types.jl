@@ -83,8 +83,10 @@ Marginal method that uses the Iterative Proportional Fitting Procedure (IPFP).
 """
 struct Ipfp <: AbstractMarginalMethod
 	iterations::Int
+	tol::Float64
 end
-Ipfp() = Ipfp(10)
+Ipfp() = Ipfp(1000, 1e-10)
+Ipfp(iterations::Int) = Ipfp(iterations, 1e-10)
 
 
 """

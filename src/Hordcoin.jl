@@ -142,7 +142,7 @@ function maximise_method(joint_probability::Array{<:AbstractFloat}, marginals, m
 end
 
 function maximise_method(joint_probability::Array{<:AbstractFloat}, marginals, method::Ipfp)
-	ipfp(joint_probability, marginals, iterations = method.iterations)
+	ipfp(joint_probability, marginals, iterations = method.iterations, tol = method.tol)
 end
 
 """
